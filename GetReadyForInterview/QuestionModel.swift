@@ -11,7 +11,7 @@ struct QuestionModel: Codable, Identifiable {
     var id: String = UUID().uuidString
     let question: String
     let answer: String?
-    let type: [QuestionsTypes]
+    let type: QuestionsTypes
     var isChecked: Bool = false
     
 }
