@@ -38,7 +38,7 @@ struct RootView: View {
                             }
                             // MARK: User
                             NavigationLink{
-                                
+                                UserView()
                             }
                             label:{
                                 SmallButonView("person", rad: 15)
