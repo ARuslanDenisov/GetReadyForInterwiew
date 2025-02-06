@@ -1,20 +1,18 @@
 //
-//  ContentView.swift
+//  StudyView.swift
 //  GetReadyForInterview
 //
 //  Created by Руслан on 06.02.2025.
 //
 
 import SwiftUI
-import SwiftData
 
-struct MainView: View {
-   
+struct StudyView: View {
     var body: some View {
-        Text("Hello world!")
+        Text("StudyView")
     }
 }
 
 #Preview {
-    MainView()
+    StudyView()
 }
