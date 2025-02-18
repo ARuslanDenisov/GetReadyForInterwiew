@@ -14,7 +14,7 @@ class QuestionService {
 
 
 extension QuestionService {
-    swiftQuestions = [
-        QuestionModel(question: <#T##String#>, answer: <#T##String?#>, type: <#T##[QuestionsTypes]#>),
-    ]
+//    swiftQuestions = [
+//        QuestionModel(question: <#T##String#>, answer: <#T##String?#>, type: <#T##[QuestionsTypes]#>),
+//    ]
 }
