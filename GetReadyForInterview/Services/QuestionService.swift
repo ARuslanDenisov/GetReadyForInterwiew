@@ -9,7 +9,13 @@ import Foundation
 
 
 class QuestionService {
+    static let shared = QuestionService() ; private init() {}
     var swiftQuestions: [QuestionModel] = []
+    
+    func getValue(_ type: QuestionsTypes) -> Int {
+        return 10
+    }
+    
 }
 
 

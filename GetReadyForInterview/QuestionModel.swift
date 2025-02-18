@@ -14,4 +14,14 @@ struct QuestionModel: Codable, Identifiable {
     let type: [QuestionsTypes]
     var isChecked: Bool = false
     
+    init(question: String, answer: String? = nil, type: [QuestionsTypes] = []) {
+        self.question = question
+        self.answer = answer
+        self.type = type
+    }
+    init() {
+        question = ""
+        answer = nil
+        type = [QuestionsTypes.Swift]
+    }
 }
