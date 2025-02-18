@@ -9,4 +9,6 @@ import Foundation
 
 enum QuestionsTypes: String, CaseIterable, Codable {
     case Swift
+    case UIKit
+    case SwiftUI
 }

@@ -21,35 +21,36 @@ struct RootView: View {
                     .resizable()
                     .ignoresSafeArea()
                     .scaledToFill()
-                VStack {
-                    HStack {
-                        Text("\(viewModel.getScreenName())")
-                            .font(.system(size: 32, weight: .bold, design: .rounded))
-                            .animation(.easeInOut)
-                        Spacer()
-                        HStack {
-                            // MARK: Search
-                            NavigationLink{
-                                
-                            }
-                            label:{
-                                SmallButonView("magnifyingglass", rad: 15)
-                                    .frame(minWidth: 44, maxWidth: 44)
-                            }
-                            // MARK: User
-                            NavigationLink{
-                                UserView()
-                            }
-                            label:{
-                                SmallButonView("person", rad: 15)
-                                    .frame(minWidth: 44, maxWidth: 44)
-                                    
-                            }
-                        }
-                    }
-                    .frame(width: 350, height: 35)
-                    Spacer()
-                }
+                    .blur(radius: 5)
+//                VStack {
+//                    HStack {
+//                        Text("\(viewModel.getScreenName())")
+//                            .font(.system(size: 32, weight: .bold, design: .rounded))
+//                            .animation(.easeInOut)
+//                        Spacer()
+//                        HStack {
+//                            // MARK: Search
+//                            NavigationLink{
+//                                
+//                            }
+//                            label:{
+//                                SmallButonView("magnifyingglass", rad: 15)
+//                                    .frame(minWidth: 44, maxWidth: 44)
+//                            }
+//                            // MARK: User
+//                            NavigationLink{
+//                                UserView()
+//                            }
+//                            label:{
+//                                SmallButonView("person", rad: 15)
+//                                    .frame(minWidth: 44, maxWidth: 44)
+//                                    
+//                            }
+//                        }
+//                    }
+//                    .frame(width: 350, height: 35)
+//                    Spacer()
+//                }
                 switch viewModel.tabBarIndex {
                 case 0:
                     MainView()
@@ -76,11 +77,12 @@ struct RootView: View {
                     Spacer()
                     ZStack {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
-                            .foregroundStyle(.ultraThinMaterial)
-                            .opacity(0.7)
-                            .frame(width: 350, height: 65)
+                            .foregroundStyle(.lightGray)
+                            .opacity(1)
+                            .frame(width: 340, height: 65)
+                            .shadow(color: .black.opacity(0.3), radius: 15)
                         TabBarView(selectedTab: $viewModel.tabBarIndex)
-                            
+   
                     }
                     
                 }

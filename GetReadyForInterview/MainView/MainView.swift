@@ -11,22 +11,136 @@ struct MainView: View {
     @State var selectedCource: Int = 0
     @StateObject var viewModel = MainViewModel()
     var body: some View {
-        HStack {
-            Text("Основные секции")
+        VStack {
+            HStack {
+                Text("Основные")
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .animation(.easeInOut)
+                Spacer()
+                HStack {
+                    // MARK: Search
+                    NavigationLink{
+                        
+                    }
+                    label:{
+                        SmallButonView("magnifyingglass", rad: 15)
+                            .frame(minWidth: 44, maxWidth: 44)
+                            .shadow(radius: 5)
+                    }
+                    // MARK: User
+                    NavigationLink{
+                        UserView()
+                    }
+                    label:{
+                        SmallButonView("person", rad: 15)
+                            .frame(minWidth: 44, maxWidth: 44)
+                            .shadow(radius: 5)
+                            
+                    }
+                }
+            }
+            .frame(width: 350, height: 35)
             Spacer()
         }
-        TabView(selection: $selectedCource) {
-            ForEach(0..<10) { index in
+        ScrollView(.vertical, showsIndicators: false) {
+            Spacer()
+                .frame(height: 30)
+            VStack {
+//                HStack {
+//                    Text("Основные секции")
+//                        .font(.system(size: 25, weight: .bold, design: .default))
+//                        .padding(.horizontal, 25)
+//                    Spacer()
+//                }
+//                .frame(height: 25)
+                TabView(selection: $selectedCource) {
+                    ForEach(0..<10) { index in
+                        
+                        CourcesElement(bigElement: true, cource: .Swift, cornerRadius: 40)
+//                            .cornerRadius(20)
+                            .shadow(radius: 10)
+                            .frame(width: 350, height: 340)
+                    }
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
-                CourcesBigElement(cource: .Swift )
-                    .cornerRadius(20)
-                    .shadow(radius: 10)
-                    .frame(width: 300, height: 300)
             }
+            .frame(height: 400)
+            VStack {
+                HStack {
+                    Text("Недавние темы")
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .padding(.horizontal, 50)
+                    Spacer()
+                }
+                .frame(height: 25)
+                ScrollView(.horizontal, showsIndicators: false) {
+                    
+                    HStack {
+                        Spacer()
+                            .frame(width: 40)
+                        ForEach(0..<10) { index in
+                            CourcesElement(bigElement: false, cource: .Swift, cornerRadius: 20)
+                                .frame(width: 160, height: 250)
+                                .padding(.leading, 5)
+                                .padding(5)
+                                .shadow(color: .black.opacity(0.25), radius: 7)
+                                
+                        }
+                        Spacer()
+                            .frame(width: 40)
+                    }
+                    .frame(height: 270)
+                    
+                }
+            }
+            .padding(.top, 20)
+            .frame(height: 250)
+            VStack {
+                HStack {
+                    Text("Основные темы")
+                        .font(.system(size: 20, weight: .bold, design: .default))
+                        .padding(.bottom, 10)
+                    Spacer()
+                }
+                
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .foregroundStyle(.ultraThinMaterial)
+                    VStack {
+                        ForEach(0..<3) { index in
+                            NavigationLink {
+                                StudyView()
+                            } label: {
+                                VStack {
+                                    HStack() {
+                                        Image(viewModel.mainCources[index].rawValue)
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 20, height: 20)
+                                            .padding(.leading, 15)
+                                        Text("\(viewModel.mainCources[index].rawValue)")
+                                            .foregroundStyle(.black)
+                                        Spacer()
+                                    }
+                                    .padding(5)
+                                    if index != 2 {
+                                        Divider()
+                                            .frame(width: 300)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .shadow(color: .black.opacity(0.25), radius: 7)
+               
+            }
+            .frame(height: 200)
+            .padding(50)
+            Spacer()
+                .frame(height: 50)
         }
-        .tabViewStyle(.page)
-        
-        Text("MainView")
     }
     private func scaleValue(geometry: GeometryProxy) -> CGFloat {
         let midX = geometry.frame(in: .global).midX
@@ -38,7 +152,7 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    RootView()
 }
 
 
