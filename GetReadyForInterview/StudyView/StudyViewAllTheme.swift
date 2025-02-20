@@ -9,41 +9,59 @@ import SwiftUI
 
 struct StudyViewAllTheme: View {
     @StateObject var viewModel: StudyViewModel = StudyViewModel()
+    @State var scrollOffset: CGFloat = 0
     var body: some View {
         ZStack {
             //header
             VStack {
-                HStack {
-                    Text("Учить")
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .animation(.easeInOut)
-                    Spacer()
+                ZStack {
+                    Rectangle()
+                        .foregroundStyle(.white)
+                        .ignoresSafeArea()
+                        .blur(radius: 6)
+                        .opacity(0.2 + Double(scrollOffset/100) )
                     HStack {
-                        // MARK: Search
-                        NavigationLink{
-                            
-                        }
-                        label:{
-                            SmallButonView("magnifyingglass", rad: 15)
-                                .frame(minWidth: 44, maxWidth: 44)
-                                .shadow(radius: 5)
-                        }
-                        // MARK: User
-                        NavigationLink{
-                            UserView()
-                        }
-                        label:{
-                            SmallButonView("person", rad: 15)
-                                .frame(minWidth: 44, maxWidth: 44)
-                                .shadow(radius: 5)
-                            
+                        Text("Учить")
+                            .font(.system(size: 32, weight: .bold, design: .rounded))
+                            .animation(.easeInOut)
+                        Spacer()
+                        HStack {
+                            // MARK: Search
+                            NavigationLink{
+                                
+                            }
+                            label:{
+                                SmallButonView("magnifyingglass", rad: 15)
+                                    .frame(minWidth: 44, maxWidth: 44)
+                                    .shadow(radius: 5)
+                            }
+                            // MARK: User
+                            NavigationLink{
+                                UserView()
+                            }
+                            label:{
+                                SmallButonView("person", rad: 15)
+                                    .frame(minWidth: 44, maxWidth: 44)
+                                    .shadow(radius: 5)
+                                
+                            }
                         }
                     }
+                    .frame(width: 350, height: 35)
+                    .opacity(0.3 + Double(scrollOffset/100) )
                 }
-                .frame(width: 350, height: 35)
+                .frame(height: 35)
                 Spacer()
             }
             ScrollView (.vertical, showsIndicators: false) {
+                GeometryReader { geometry in
+                    Text("")
+                        .preference(key: OffsetKey.self , value: geometry.frame(in: .global).minY)
+                }
+                .frame(height: 0)
+                .onPreferenceChange(OffsetKey.self) { value in
+                    self.scrollOffset = value
+                }
                 Spacer()
                     .frame(height: 60)
                 ZStack {

@@ -9,40 +9,60 @@ import SwiftUI
 
 struct MainView: View {
     @State var selectedCource: Int = 0
+    @State var scrollOffset: CGFloat = 0
     @StateObject var viewModel = MainViewModel()
     var body: some View {
         VStack {
-            HStack {
-                Text("Основные")
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .animation(.easeInOut)
-                Spacer()
+            ZStack {
+                Rectangle()
+                    .foregroundStyle(.white)
+                    .ignoresSafeArea()
+                    .blur(radius: 6)
+                    .opacity(0.2 + Double(scrollOffset/100) )
                 HStack {
-                    // MARK: Search
-                    NavigationLink{
-                        
-                    }
-                    label:{
-                        SmallButonView("magnifyingglass", rad: 15)
-                            .frame(minWidth: 44, maxWidth: 44)
-                            .shadow(radius: 5)
-                    }
-                    // MARK: User
-                    NavigationLink{
-                        UserView()
-                    }
-                    label:{
-                        SmallButonView("person", rad: 15)
-                            .frame(minWidth: 44, maxWidth: 44)
-                            .shadow(radius: 5)
+                    Text("Основные")
+                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .animation(.easeInOut)
+                    Spacer()
+                    HStack {
+                        // MARK: Search
+                        NavigationLink{
                             
+                        }
+                        label:{
+                            SmallButonView("magnifyingglass", rad: 17)
+                                .frame(width: 50, height: 40)
+                                .shadow(radius: 5)
+                        }
+                        // MARK: User
+                        NavigationLink{
+                            UserView()
+                        }
+                        label:{
+                            SmallButonView("person", rad: 17)
+                                .frame(width: 50, height: 40)
+                                .shadow(radius: 5)
+                            
+                        }
                     }
                 }
+                .frame(width: 350, height: 35)
+                .opacity(0.3 + Double(scrollOffset/100) )
             }
-            .frame(width: 350, height: 35)
+            .frame(height: 35)
+            
+            
             Spacer()
         }
         ScrollView(.vertical, showsIndicators: false) {
+            GeometryReader { geometry in
+                Text("")
+                    .preference(key: OffsetKey.self , value: geometry.frame(in: .global).minY)
+            }
+            .frame(height: 0)
+            .onPreferenceChange(OffsetKey.self) { value in
+                self.scrollOffset = value
+            }
             Spacer()
                 .frame(height: 30)
             VStack {
@@ -50,7 +70,7 @@ struct MainView: View {
                     ForEach(0..<10) { index in
                         
                         CourcesElement(bigElement: true, cource: .Swift, cornerRadius: 40)
-                            .shadow(radius: 10)
+                            .shadow(color: .black.opacity(0.2), radius: 7)
                             .frame(width: 350, height: 340)
                     }
                 }
@@ -76,7 +96,7 @@ struct MainView: View {
                                 .frame(width: 160, height: 250)
                                 .padding(.leading, 5)
                                 .padding(5)
-                                .shadow(color: .black.opacity(0.25), radius: 7)
+                                .shadow(color: .black.opacity(0.2), radius: 7)
                                 
                         }
                         Spacer()
@@ -125,7 +145,7 @@ struct MainView: View {
                         }
                     }
                 }
-                .shadow(color: .black.opacity(0.25), radius: 7)
+                .shadow(color: .black.opacity(0.2), radius: 7)
                
             }
             .frame(height: 200)
