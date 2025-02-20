@@ -57,7 +57,7 @@ struct RootView: View {
                         .transition(.opacity)
                     
                 case 1:
-                    StudyView()
+                    StudyViewAllTheme()
                         .transition(.opacity)
                     
                 case 2:

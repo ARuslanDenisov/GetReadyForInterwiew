@@ -110,7 +110,7 @@ struct MainView: View {
                     VStack {
                         ForEach(0..<3) { index in
                             NavigationLink {
-                                StudyView()
+                                StudyViewAllTheme()
                             } label: {
                                 VStack {
                                     HStack() {
