@@ -46,18 +46,10 @@ struct MainView: View {
             Spacer()
                 .frame(height: 30)
             VStack {
-//                HStack {
-//                    Text("Основные секции")
-//                        .font(.system(size: 25, weight: .bold, design: .default))
-//                        .padding(.horizontal, 25)
-//                    Spacer()
-//                }
-//                .frame(height: 25)
                 TabView(selection: $selectedCource) {
                     ForEach(0..<10) { index in
                         
                         CourcesElement(bigElement: true, cource: .Swift, cornerRadius: 40)
-//                            .cornerRadius(20)
                             .shadow(radius: 10)
                             .frame(width: 350, height: 340)
                     }
