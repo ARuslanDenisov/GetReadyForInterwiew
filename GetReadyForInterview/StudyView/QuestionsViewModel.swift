@@ -7,7 +7,6 @@
 
 import Foundation
 
-class StudyViewModel: ObservableObject {
-    
-    
+class QuestionsViewModel: ObservableObject {
+    @Published var questions: [QuestionModel] = []
 }

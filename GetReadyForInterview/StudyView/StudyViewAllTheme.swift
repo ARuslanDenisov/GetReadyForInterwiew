@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct StudyViewAllTheme: View {
-    @StateObject var viewModel: StudyViewModel = StudyViewModel()
     @State var scrollOffset: CGFloat = 0
     var body: some View {
         ZStack {
@@ -32,7 +31,7 @@ struct StudyViewAllTheme: View {
                             }
                             label:{
                                 SmallButonView("magnifyingglass", rad: 15)
-                                    .frame(minWidth: 44, maxWidth: 44)
+                                    .frame(width: 50, height: 40)
                                     .shadow(radius: 5)
                             }
                             // MARK: User
@@ -41,7 +40,7 @@ struct StudyViewAllTheme: View {
                             }
                             label:{
                                 SmallButonView("person", rad: 15)
-                                    .frame(minWidth: 44, maxWidth: 44)
+                                    .frame(width: 50, height: 40)
                                     .shadow(radius: 5)
                                 
                             }
@@ -70,7 +69,8 @@ struct StudyViewAllTheme: View {
                     VStack {
                         ForEach(QuestionsTypes.allCases, id: \.self) { questionType in
                             NavigationLink {
-                                
+                                QuestionsView(questionType: questionType, header: questionType.rawValue)
+                                    .navigationBarBackButtonHidden()
                             } label: {
                                 VStack {
                                     HStack {

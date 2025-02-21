@@ -22,35 +22,7 @@ struct RootView: View {
                     .ignoresSafeArea()
                     .scaledToFill()
                     .blur(radius: 5)
-//                VStack {
-//                    HStack {
-//                        Text("\(viewModel.getScreenName())")
-//                            .font(.system(size: 32, weight: .bold, design: .rounded))
-//                            .animation(.easeInOut)
-//                        Spacer()
-//                        HStack {
-//                            // MARK: Search
-//                            NavigationLink{
-//                                
-//                            }
-//                            label:{
-//                                SmallButonView("magnifyingglass", rad: 15)
-//                                    .frame(minWidth: 44, maxWidth: 44)
-//                            }
-//                            // MARK: User
-//                            NavigationLink{
-//                                UserView()
-//                            }
-//                            label:{
-//                                SmallButonView("person", rad: 15)
-//                                    .frame(minWidth: 44, maxWidth: 44)
-//                                    
-//                            }
-//                        }
-//                    }
-//                    .frame(width: 350, height: 35)
-//                    Spacer()
-//                }
+
                 switch viewModel.tabBarIndex {
                 case 0:
                     MainView()
