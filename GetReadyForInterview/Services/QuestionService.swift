@@ -253,6 +253,10 @@ class QuestionService {
     func getQuestions(theme: QuestionsTypes) -> [QuestionModel] {
         swiftQuestions.filter({ $0.type.contains(theme) })
     }
+    
+    func getAllQuestion(arr: [QuestionModel]) {
+        
+    }
     func updateQuestion(_ question: QuestionModel) -> Bool {
             let index = swiftQuestions.firstIndex { questionIn in
                 questionIn.id == question.id}
