@@ -14,8 +14,8 @@ struct QuestionElement: View {
     var body: some View {
         VStack (spacing: 0){
             ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(!isExpanded ? .white : .black)
+                RoundedRectangle(cornerRadius: 35)
+                    .foregroundStyle(!isExpanded ? .lightGrayApp : .black)
 //                    .shadow(color: .black.opacity(0.3), radius: 7)
                 if isExpanded {
                     ScrollView (showsIndicators: false)
@@ -48,8 +48,10 @@ struct QuestionElement: View {
                         .foregroundStyle(!isExpanded ? .black : .clear)
                     HStack {
                         Text(!isExpanded ? "Ответ" : "Свернуть")
-                            .foregroundStyle(!isExpanded ? .white : .black)
-                        if isExpanded { Image(systemName: "chevron.compact.up")
+                            .foregroundStyle(!isExpanded ? .white : .redApp)
+                        if isExpanded {
+                            Image(systemName: "chevron.compact.up")
+                                .foregroundStyle(.redApp)
                         }
                     }
                 }

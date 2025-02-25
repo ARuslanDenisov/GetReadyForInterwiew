@@ -14,69 +14,78 @@ struct QuestionsView: View {
     @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack {
-            Image("bg")
-                .resizable()
-                .ignoresSafeArea()
-                .scaledToFill()
-                .blur(radius: 5)
+            GradientView()
             VStack {
                 ZStack {
-                    Rectangle()
-                        .foregroundStyle(.white)
-                        .ignoresSafeArea()
-                        .blur(radius: 6)
-                        .opacity(0.2 + Double(scrollOffset/100) )
-                    VStack {
-                        HStack {
-                            Spacer()
-                                .frame(width: 20)
-                            Text(questionsTheme.rawValue)
-                                .font(.system(size: 32, weight: .bold, design: .rounded))
-                                .animation(.easeInOut)
-                            Spacer()
-                            HStack {
-                                // MARK: Search
-                                NavigationLink{
-                                    
-                                }
-                                label:{
-                                    SmallButonView("magnifyingglass", rad: 15)
-                                        .frame(width: 50, height: 40)
-                                        .shadow(radius: 5)
-                                }
-                                // MARK: User
-                                NavigationLink{
-                                    UserView()
-                                }
-                                label:{
-                                    SmallButonView("person", rad: 15)
-                                        .frame(width: 50, height: 40)
-                                        .shadow(radius: 5)
-                                    
-                                }
+                    RoundedRectangle(cornerRadius: 35)
+                        .foregroundStyle(.lightGrayApp)
+                        .shadow(radius: 3)
+                        
+                    HStack {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(.redApp)
+                            Button {
+                                dismiss()
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .foregroundStyle(.white)
+                                    .padding(10)
                             }
                         }
-                        .frame(width: 350, height: 35)
-                        .opacity(0.3 + Double(scrollOffset/100) )
-                        HStack(alignment: .center) {
+                        Text("\(questionsTheme.rawValue)")
+                            .font(.system(size: 32, weight: .light, design: .default))
+                            .animation(.easeInOut)
+                        Spacer()
+                        HStack {
+                            // MARK: Search
+                            NavigationLink{
+                                
+                            }
+                            label:{
+                                Image(systemName: "magnifyingglass")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundStyle(.black)
+                                    .fontWeight(.light)
+    //                            SmallButonView("magnifyingglass", rad: 17)
+    //                                .frame(width: 50, height: 40)
+    //                                .shadow(radius: 5)
+                            }
                             
-                            Text("Прогресс")
-                                .font(.system(size: 15, weight: .light, design: .rounded))
-                                .padding(.horizontal, 15)
-                                .padding(.leading, 8)
-                            ProgressBar(progress: 0.5, width: 230)
+                            // MARK: User
+                            NavigationLink{
+                                UserView()
+                            }
+                            label:{
+                                Image(systemName: "person")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundStyle(.black)
+                                    .fontWeight(.light)
+    //                            SmallButonView("person", rad: 17)
+    //                                .frame(width: 50, height: 40)
+    //                                .shadow(radius: 5)
+                                
+                            }
+                            .padding(.horizontal, 10)
                         }
-                        .frame(width: 350, height: 35)
-                        .opacity(0.2 + Double(scrollOffset/100) )
                     }
-                    
+                    .padding(.horizontal, 14)
+                    .frame(width: 350, height: 35)
+                    .opacity(0.3 + Double(scrollOffset/100) )
                 }
-                .frame(height: 35)
+                .opacity(0.8 + Double(scrollOffset/110) )
+                .frame(width: 350,height: 65)
+                
+                
                 Spacer()
-        }
+            }
             ScrollView(showsIndicators: false) {
                 Spacer()
-                    .frame(height: 60)
+                    .frame(height: 90)
                 GeometryReader { geometry in
                     Text("")
                         .preference(key: OffsetKey.self , value: geometry.frame(in: .global).minY)
@@ -87,7 +96,6 @@ struct QuestionsView: View {
                 }
                 ForEach(viewModel.questions, id: \.id) { question in
                     QuestionElement(question: question)
-                        .padding(.horizontal, 4)
                         .shadow(color: .black.opacity(0.3), radius: 4, y: 4)
                         .overlay {
                             HStack {
@@ -97,9 +105,10 @@ struct QuestionsView: View {
                                                                             } label: {
                                         ZStack {
                                             Circle()
-                                                .foregroundStyle(.white)
+                                                .foregroundStyle(.redApp)
                                                 .frame(width: 40, height: 40)
-                                            Image(systemName: "cross.fill")
+                                            Image(systemName: "heart.fill")
+                                                .foregroundStyle(.white)
                                         }
                                         .shadow(radius: 4)
                                     }
@@ -111,21 +120,7 @@ struct QuestionsView: View {
                         
                 }
             }
-            .frame(width: 350)
-            VStack {
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundStyle(.black)
-                            .padding(10)
-                    }
-                    Spacer()
-                }
-                .frame(width: 400)
-                Spacer()
-            }
+            .padding(.horizontal,25)
             
             .onAppear {
                 viewModel.questions = QuestionService.shared.getQuestions(theme: questionsTheme)

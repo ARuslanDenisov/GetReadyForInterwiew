@@ -21,10 +21,11 @@ struct CourceBigElement: View {
                         .resizable()
                         .scaleEffect(1.3)
                         .clipShape(RoundedRectangle(cornerRadius: 30))
+                        .scaledToFit()
                         .shadow(radius: 2)
-                        .saturation(0)
+//                        .saturation(0)
                         .blendMode(.darken)
-                        .frame(width: 200, height: 200)
+
                     
                     
                     Spacer()

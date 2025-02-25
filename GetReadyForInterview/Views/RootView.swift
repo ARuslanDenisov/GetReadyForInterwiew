@@ -16,12 +16,12 @@ struct RootView: View {
            
             ZStack {
                 
-                
-                Image("bg")
-                    .resizable()
-                    .ignoresSafeArea()
-                    .scaledToFill()
-                    .blur(radius: 5)
+                GradientView()
+//                Image("bg")
+//                    .resizable()
+//                    .ignoresSafeArea()
+//                    .scaledToFill()
+//                    .blur(radius: 5)
 
                 switch viewModel.tabBarIndex {
                 case 0:
@@ -49,7 +49,7 @@ struct RootView: View {
                     Spacer()
                     ZStack {
                         RoundedRectangle(cornerRadius: 25, style: .continuous)
-                            .foregroundStyle(.lightGray)
+                            .foregroundStyle(.lightGrayApp)
                             .opacity(1)
                             .frame(width: 340, height: 65)
                             .shadow(color: .black.opacity(0.3), radius: 15)
@@ -64,6 +64,12 @@ struct RootView: View {
             
         }
         .navigationViewStyle(.stack)
+    }
+    init() {
+        
+    }
+    init(tab: Int) {
+        viewModel.tabBarIndex = tab
     }
 }
 

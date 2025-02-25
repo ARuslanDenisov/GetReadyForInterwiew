@@ -15,7 +15,7 @@ struct ProgressBar: View {
             RoundedRectangle(cornerRadius: 30)
                 .frame(height: 10)
                 .frame(width: width)
-                .foregroundStyle(.lightGray.opacity(0.4))
+                .foregroundStyle(.lightGrayApp.opacity(0.4))
                 .shadow(radius: 5)
             
             HStack {

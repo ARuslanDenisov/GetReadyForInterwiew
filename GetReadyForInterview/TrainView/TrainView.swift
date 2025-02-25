@@ -21,7 +21,11 @@ struct TrainView: View {
                     Text("Тренировка")
                         .font(.system(size: 32, weight: .bold, design: .rounded))
                         .animation(.easeInOut)
-                        
+                    Circle()
+                        .trim(from: 0, to: 0.7)
+                        .stroke(style: StrokeStyle(lineWidth: 3, lineCap: .round))
+                        .foregroundStyle(.black)
+                        .blur(radius: 1)
                     
                     Spacer()
                     HStack {

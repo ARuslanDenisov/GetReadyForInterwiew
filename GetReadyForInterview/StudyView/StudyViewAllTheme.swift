@@ -14,14 +14,20 @@ struct StudyViewAllTheme: View {
             //header
             VStack {
                 ZStack {
-                    Rectangle()
-                        .foregroundStyle(.white)
-                        .ignoresSafeArea()
-                        .blur(radius: 6)
-                        .opacity(0.2 + Double(scrollOffset/100) )
+                    RoundedRectangle(cornerRadius: 35)
+                        .foregroundStyle(.lightGrayApp)
+                        .shadow(radius: 3)
+                        
                     HStack {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(.redApp)
+                            Text("2")
+                                .font(.system(size: 32, weight: .light, design: .default))
+                                .foregroundStyle(.white)
+                        }
                         Text("Учить")
-                            .font(.system(size: 32, weight: .bold, design: .rounded))
+                            .font(.system(size: 32, weight: .light, design: .default))
                             .animation(.easeInOut)
                         Spacer()
                         HStack {
@@ -30,28 +36,47 @@ struct StudyViewAllTheme: View {
                                 
                             }
                             label:{
-                                SmallButonView("magnifyingglass", rad: 15)
-                                    .frame(width: 50, height: 40)
-                                    .shadow(radius: 5)
+                                Image(systemName: "magnifyingglass")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundStyle(.black)
+                                    .fontWeight(.light)
+    //                            SmallButonView("magnifyingglass", rad: 17)
+    //                                .frame(width: 50, height: 40)
+    //                                .shadow(radius: 5)
                             }
+                            
                             // MARK: User
                             NavigationLink{
                                 UserView()
                             }
                             label:{
-                                SmallButonView("person", rad: 15)
-                                    .frame(width: 50, height: 40)
-                                    .shadow(radius: 5)
+                                Image(systemName: "person")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 25, height: 25)
+                                    .foregroundStyle(.black)
+                                    .fontWeight(.light)
+    //                            SmallButonView("person", rad: 17)
+    //                                .frame(width: 50, height: 40)
+    //                                .shadow(radius: 5)
                                 
                             }
+                            .padding(.horizontal, 10)
                         }
                     }
+                    .padding(.horizontal, 14)
                     .frame(width: 350, height: 35)
                     .opacity(0.3 + Double(scrollOffset/100) )
                 }
-                .frame(height: 35)
+                .opacity(0.8 + Double(scrollOffset/110) )
+                .frame(width: 350,height: 65)
+                
+                
                 Spacer()
             }
+            //main
             ScrollView (.vertical, showsIndicators: false) {
                 GeometryReader { geometry in
                     Text("")
@@ -62,10 +87,10 @@ struct StudyViewAllTheme: View {
                     self.scrollOffset = value
                 }
                 Spacer()
-                    .frame(height: 60)
+                    .frame(height: 90)
                 ZStack {
-                    RoundedRectangle(cornerRadius: 40)
-                        .foregroundStyle(.ultraThinMaterial)
+                    RoundedRectangle(cornerRadius: 35)
+                        .foregroundStyle(.lightGrayApp)
                     VStack {
                         ForEach(QuestionsTypes.allCases, id: \.self) { questionType in
                             NavigationLink {
@@ -77,7 +102,7 @@ struct StudyViewAllTheme: View {
                                         ZStack {
                                             Circle()
                                                 .frame(width: 60, height: 60)
-                                                .foregroundStyle(.lightGray)
+                                                .foregroundStyle(.lightGrayApp)
                                                 .shadow(color: .black.opacity(0.4), radius: 15, y: 15)
                                             Image("\(questionType.rawValue)")
                                                 .resizable()
@@ -118,7 +143,7 @@ struct StudyViewAllTheme: View {
                     Spacer()
                 }
             }
-            .padding(.horizontal, 45)
+            .padding(.horizontal, 25)
             .shadow(radius: 10)
         }
     }
@@ -126,5 +151,5 @@ struct StudyViewAllTheme: View {
 }
 
 #Preview {
-    RootView()
+    RootView(tab: 1)
 }

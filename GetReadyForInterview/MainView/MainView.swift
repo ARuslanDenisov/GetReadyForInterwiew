@@ -12,16 +12,23 @@ struct MainView: View {
     @State var scrollOffset: CGFloat = 0
     @StateObject var viewModel = MainViewModel()
     var body: some View {
+        // header
         VStack {
             ZStack {
-                Rectangle()
-                    .foregroundStyle(.white)
-                    .ignoresSafeArea()
-                    .blur(radius: 6)
-                    .opacity(0.2 + Double(scrollOffset/100) )
+                RoundedRectangle(cornerRadius: 35)
+                    .foregroundStyle(.lightGrayApp)
+                    .shadow(radius: 3)
+                    
                 HStack {
+                    ZStack {
+                        Circle()
+                            .foregroundStyle(.redApp)
+                        Text("1")
+                            .font(.system(size: 32, weight: .light, design: .default))
+                            .foregroundStyle(.white)
+                    }
                     Text("Основные")
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
+                        .font(.system(size: 32, weight: .light, design: .default))
                         .animation(.easeInOut)
                     Spacer()
                     HStack {
@@ -30,30 +37,47 @@ struct MainView: View {
                             
                         }
                         label:{
-                            SmallButonView("magnifyingglass", rad: 17)
-                                .frame(width: 50, height: 40)
-                                .shadow(radius: 5)
+                            Image(systemName: "magnifyingglass")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(.black)
+                                .fontWeight(.light)
+//                            SmallButonView("magnifyingglass", rad: 17)
+//                                .frame(width: 50, height: 40)
+//                                .shadow(radius: 5)
                         }
+                        
                         // MARK: User
                         NavigationLink{
                             UserView()
                         }
                         label:{
-                            SmallButonView("person", rad: 17)
-                                .frame(width: 50, height: 40)
-                                .shadow(radius: 5)
+                            Image(systemName: "person")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                                .foregroundStyle(.black)
+                                .fontWeight(.light)
+//                            SmallButonView("person", rad: 17)
+//                                .frame(width: 50, height: 40)
+//                                .shadow(radius: 5)
                             
                         }
+                        .padding(.horizontal, 10)
                     }
                 }
+                .padding(.horizontal, 14)
                 .frame(width: 350, height: 35)
                 .opacity(0.3 + Double(scrollOffset/100) )
             }
-            .frame(height: 35)
+            .opacity(0.8 + Double(scrollOffset/110) )
+            .frame(width: 350,height: 65)
             
             
             Spacer()
         }
+        // main block
         ScrollView(.vertical, showsIndicators: false) {
             GeometryReader { geometry in
                 Text("")
@@ -64,61 +88,63 @@ struct MainView: View {
                 self.scrollOffset = value
             }
             Spacer()
-                .frame(height: 30)
+                .frame(height: 85)
             VStack {
                 TabView(selection: $selectedCource) {
                     ForEach(0..<10) { index in
-                        
-                        CourcesElement(bigElement: true, cource: .Swift, cornerRadius: 40)
-                            .shadow(color: .black.opacity(0.2), radius: 7)
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 35)
+                                .foregroundStyle(.lightGrayApp)
+                                .shadow(radius: 3)
+                            CourceBigElement(cource: .Swift, cornerRadius: 50)
+                        }
                             .frame(width: 350, height: 340)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             }
-            .frame(height: 400)
+            .frame(height: 350)
             VStack {
                 HStack {
+                    
                     Text("Недавние темы")
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .padding(.horizontal, 50)
+                        .font(.system(size: 30, weight: .light, design: .default))
+                    
                     Spacer()
                 }
-                .frame(height: 25)
+                
+                .padding(.leading, 30)
                 ScrollView(.horizontal, showsIndicators: false) {
-                    
                     HStack {
                         Spacer()
-                            .frame(width: 40)
+                            .frame(width: 30)
                         ForEach(0..<10) { index in
-                            CourcesElement(bigElement: false, cource: .Swift, cornerRadius: 20)
-                                .frame(width: 160, height: 250)
-                                .padding(.leading, 5)
-                                .padding(5)
-                                .shadow(color: .black.opacity(0.2), radius: 7)
+                            CourceSmallElement(cource: .Swift, cornerRadius: 30)
+                                .frame(width: 170, height: 250)
+                                .shadow(radius: 3)
                                 
                         }
                         Spacer()
-                            .frame(width: 40)
+                            .frame(width: 30)
                     }
-                    .frame(height: 270)
+                    .frame(height: 256)
                     
                 }
+                .frame(height: 250)
             }
-            .padding(.top, 20)
-            .frame(height: 250)
+            
             VStack {
-                HStack {
+                HStack (spacing: 0) {
                     Text("Основные темы")
-                        .font(.system(size: 20, weight: .bold, design: .default))
-                        .padding(.bottom, 10)
+                        .font(.system(size: 30, weight: .light, design: .default))
                     Spacer()
                 }
                 
                 ZStack {
-                    RoundedRectangle(cornerRadius: 20)
+                    RoundedRectangle(cornerRadius: 30)
                         .foregroundStyle(.ultraThinMaterial)
+                        .shadow(radius: 5)
                     VStack {
                         ForEach(0..<3) { index in
                             NavigationLink {
@@ -131,6 +157,7 @@ struct MainView: View {
                                             .scaledToFit()
                                             .frame(width: 20, height: 20)
                                             .padding(.leading, 15)
+//                                            .saturation(0)
                                         Text("\(viewModel.mainCources[index].rawValue)")
                                             .foregroundStyle(.black)
                                         Spacer()
@@ -145,11 +172,11 @@ struct MainView: View {
                         }
                     }
                 }
-                .shadow(color: .black.opacity(0.2), radius: 7)
+                
                
             }
             .frame(height: 200)
-            .padding(50)
+            .padding(30)
             Spacer()
                 .frame(height: 50)
         }
