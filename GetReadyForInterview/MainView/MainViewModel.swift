@@ -7,8 +7,7 @@
 
 import Foundation
 
-@MainActor
 
 class MainViewModel: ObservableObject {
-    
+    @Published var mainCources: [QuestionsTypes] = [.Swift, .SwiftUI, .UIKit]
 }

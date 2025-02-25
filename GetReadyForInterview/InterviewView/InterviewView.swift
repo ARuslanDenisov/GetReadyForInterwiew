@@ -9,7 +9,9 @@ import SwiftUI
 
 struct InterviewView: View {
     var body: some View {
-        Text("InterView view")
+        Text("Скрининг")
+        Text("Тех интервью 30 мин")
+        Text("Софты")
     }
 }
 

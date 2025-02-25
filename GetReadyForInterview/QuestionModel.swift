@@ -10,8 +10,18 @@ import Foundation
 struct QuestionModel: Codable, Identifiable {
     var id: String = UUID().uuidString
     let question: String
-    let answer: String?
-    let type: QuestionsTypes
+    let answer: String
+    let type: [QuestionsTypes]
     var isChecked: Bool = false
     
+    init(question: String, answer: String, type: [QuestionsTypes] = []) {
+        self.question = question
+        self.answer = answer
+        self.type = type
+    }
+    init() {
+        question = ""
+        answer = ""
+        type = [QuestionsTypes.Swift]
+    }
 }

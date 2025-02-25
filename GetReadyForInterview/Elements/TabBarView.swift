@@ -19,7 +19,10 @@ struct TabBarView: View {
                     Image(systemName: images[index])
                         .resizable()
                         .frame(width: 20, height: 20)
-                        .foregroundStyle(selectedIndex == index ? .black : .gray)
+                        .foregroundStyle(selectedIndex == index ? .redApp : .gray)
+                        .scaleEffect(selectedIndex == index ? 1.2 : 1)
+
+//                        .scaleEffect(selectedIndex == index ? 1.2 : 1)
                     
                     Text(tabArray[index])
                         .foregroundStyle(selectedIndex == index ? .black : .gray)
@@ -32,7 +35,7 @@ struct TabBarView: View {
                     self.selectedIndex = index
                     selectedTab = index
                 }
-                .animation(.easeInOut, value: index)
+                .animation(.easeInOut, value: selectedIndex)
             }
         }
         .background(.clear)

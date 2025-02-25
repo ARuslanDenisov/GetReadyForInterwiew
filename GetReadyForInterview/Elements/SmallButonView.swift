@@ -13,7 +13,7 @@ struct SmallButonView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: radius)
-                .foregroundStyle(.ultraThinMaterial)
+                .foregroundStyle(.white)
                 .opacity(0.7)
             Image(systemName: image)
                 .resizable()
