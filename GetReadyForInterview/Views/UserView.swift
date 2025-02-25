@@ -11,18 +11,8 @@ struct UserView: View {
     var body: some View {
         ZStack {
             VStack {
-//                RoundedRectangle(cornerRadius: 20)
-//                    .frame(width: 300, height: 400)
-//                    .foregroundStyle(.red)
-//                    .overlay {
-//                        Circle()
-//                            .frame(width: 50)
-//                            .background(.clear)
-//                            .blendMode(.destinationOut)
-//                    }
-//                    .compositingGroup()
-//                
-                
+                Text("Name")
+                Text("Progress")
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundStyle(.black)
                     .frame(height: 100)

@@ -125,7 +125,22 @@ struct QuestionsView: View {
             .onAppear {
                 viewModel.questions = QuestionService.shared.getQuestions(theme: questionsTheme)
             }
+            VStack {
+                HStack {
+                    
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundStyle(.white)
+                            .padding(10)
+                    }
+                    Spacer()
+                }
+                Spacer()
+            }
         }
+        
     }
     init(questionType: QuestionsTypes, header: String) {
         self.questionsTheme = questionType
